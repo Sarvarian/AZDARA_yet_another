@@ -279,6 +279,11 @@ player0_dash={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="StaticTotal"
+2d_physics/layer_2="Short"
+
 [physics]
 
 common/physics_fps=120
