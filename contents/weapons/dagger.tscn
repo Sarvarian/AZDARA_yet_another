@@ -1,0 +1,123 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://aban/weapon/weapon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://contents/sprites/knife.png" type="Texture" id=2]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": false,
+"name": "default",
+"speed": 0.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 5.0
+height = 40.0
+
+[sub_resource type="Animation" id=4]
+resource_name = "Pressed"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 3,
+"values": [ -74.9999 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Arm:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 3,
+"values": [ -15.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Arm/hand:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 3,
+"values": [ -30.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Released"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 3,
+"values": [ 74.9999 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Arm:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 3,
+"values": [ -135.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Arm/hand:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 3,
+"values": [ 0.0 ]
+}
+
+[node name="Dagger" instance=ExtResource( 1 )]
+rotation = -0.261799
+
+[node name="Arm" parent="." index="0"]
+rotation = -1.09956
+
+[node name="hand" parent="Arm" index="0"]
+rotation = -0.314159
+
+[node name="Weapon" parent="Arm/hand" index="0"]
+mode = 1
+
+[node name="AnimatedSprite" parent="Arm/hand/Weapon" index="0"]
+position = Vector2( 0, 20 )
+rotation = 3.14159
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 2 )
+
+[node name="CollisionShape2D" parent="Arm/hand/Weapon" index="1"]
+position = Vector2( 0, 20 )
+rotation = 3.14159
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" parent="." index="1"]
+anims/Pressed = SubResource( 4 )
+anims/Released = SubResource( 3 )

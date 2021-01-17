@@ -1,0 +1,70 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://aban/behavior_tree/b_root.gd" type="Script" id=1]
+[ext_resource path="res://aban/behavior_tree/z_frontest_open_dir_as_persist_move_dir.gd" type="Script" id=2]
+[ext_resource path="res://aban/behavior_tree/c_selector.gd" type="Script" id=3]
+[ext_resource path="res://aban/behavior_tree/t_set_look_state_on_forward.gd" type="Script" id=4]
+[ext_resource path="res://aban/behavior_tree/d_not.gd" type="Script" id=5]
+[ext_resource path="res://aban/behavior_tree/c_sequence.gd" type="Script" id=6]
+[ext_resource path="res://aban/behavior_tree/z_closest_body_as_target.gd" type="Script" id=7]
+[ext_resource path="res://aban/behavior_tree/f_target_on_sight_last_position_is_inf.gd" type="Script" id=8]
+[ext_resource path="res://aban/behavior_tree/f_look_state_is_forward.gd" type="Script" id=9]
+[ext_resource path="res://aban/behavior_tree/t_set_look_state_on_target.gd" type="Script" id=10]
+[ext_resource path="res://aban/behavior_tree/f_target_on_sight.gd" type="Script" id=11]
+
+[node name="Enemy (BT_B_Root)" type="Node"]
+script = ExtResource( 1 )
+
+[node name="BT_C_Selector" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="BT_C_Selector (Targeting)" type="Node" parent="BT_C_Selector"]
+script = ExtResource( 3 )
+
+[node name="BT_Z_closest_body_as_target" type="Node" parent="BT_C_Selector/BT_C_Selector (Targeting)"]
+script = ExtResource( 7 )
+
+[node name="BT_C_Sequence (Alert)" type="Node" parent="BT_C_Selector"]
+script = ExtResource( 6 )
+
+[node name="BT_F_target_on_sight (Check)" type="Node" parent="BT_C_Selector/BT_C_Sequence (Alert)"]
+script = ExtResource( 11 )
+
+[node name="BT_B_Root (Look State To Target)" type="Node" parent="BT_C_Selector/BT_C_Sequence (Alert)"]
+script = ExtResource( 1 )
+
+[node name="BT_C_Sequence" type="Node" parent="BT_C_Selector/BT_C_Sequence (Alert)/BT_B_Root (Look State To Target)"]
+script = ExtResource( 6 )
+
+[node name="BT_D_Not" type="Node" parent="BT_C_Selector/BT_C_Sequence (Alert)/BT_B_Root (Look State To Target)/BT_C_Sequence"]
+script = ExtResource( 5 )
+
+[node name="BT_F_look_state_is_target" type="Node" parent="BT_C_Selector/BT_C_Sequence (Alert)/BT_B_Root (Look State To Target)/BT_C_Sequence/BT_D_Not"]
+script = ExtResource( 8 )
+
+[node name="BT_T_set_look_state_on_target" type="Node" parent="BT_C_Selector/BT_C_Sequence (Alert)/BT_B_Root (Look State To Target)/BT_C_Sequence"]
+script = ExtResource( 10 )
+
+[node name="BT_B_Root (Move)" type="Node" parent="BT_C_Selector/BT_C_Sequence (Alert)"]
+script = ExtResource( 1 )
+
+[node name="BT_Z_frontest_open_dir_as_persist_move_dir" type="Node" parent="BT_C_Selector/BT_C_Sequence (Alert)/BT_B_Root (Move)"]
+script = ExtResource( 2 )
+
+[node name="BT_C_Selector (Neutral Exploration" type="Node" parent="BT_C_Selector"]
+script = ExtResource( 3 )
+
+[node name="BT_C_Sequence (Look State To Forward)" type="Node" parent="BT_C_Selector/BT_C_Selector (Neutral Exploration"]
+script = ExtResource( 6 )
+
+[node name="BT_D_Not" type="Node" parent="BT_C_Selector/BT_C_Selector (Neutral Exploration/BT_C_Sequence (Look State To Forward)"]
+script = ExtResource( 5 )
+
+[node name="BT_F_look_state_is_forward" type="Node" parent="BT_C_Selector/BT_C_Selector (Neutral Exploration/BT_C_Sequence (Look State To Forward)/BT_D_Not"]
+script = ExtResource( 9 )
+
+[node name="BT_T_set_look_state_on_forward" type="Node" parent="BT_C_Selector/BT_C_Selector (Neutral Exploration/BT_C_Sequence (Look State To Forward)"]
+script = ExtResource( 4 )
+
+[node name="BT_Z_frontest_open_dir_as_persist_move_dir" type="Node" parent="BT_C_Selector/BT_C_Selector (Neutral Exploration"]
+script = ExtResource( 2 )

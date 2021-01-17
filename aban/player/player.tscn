@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://aban/player/camera/camera.tscn" type="PackedScene" id=1]
+[ext_resource path="res://aban/player/player.gd" type="Script" id=2]
+
+[node name="Player" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Camera" parent="." instance=ExtResource( 1 )]
+current = true
+smoothing_enabled = true
+
+[node name="LookStateSwitchTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
