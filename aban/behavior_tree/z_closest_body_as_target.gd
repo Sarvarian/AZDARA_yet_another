@@ -19,6 +19,6 @@ func find_closest_body_on_sight(memory : Memory) -> Character:
 		if not p_closest_body_on_sight:
 			p_closest_body_on_sight = b
 		else:
-			if memory.p_owner.global_position.distance_squared_to(b.global_position) < memory.p_owner.global_position.distance_squared_to(p_closest_body_on_sight.global_position):
+			if memory.c_owner.global_position.distance_squared_to(b.global_position) < memory.c_owner.global_position.distance_squared_to(p_closest_body_on_sight.global_position):
 				p_closest_body_on_sight = b
 	return p_closest_body_on_sight

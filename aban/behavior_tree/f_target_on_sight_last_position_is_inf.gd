@@ -3,6 +3,6 @@ extends BTNode
 
 
 func _do(memory : Memory) -> int:
-	if memory.p_target_on_sight_last_position.global_position == Vector2.INF:
+	if memory.c_target_on_sight_last_position.global_position == Vector2.INF:
 		return OK
 	return FAILED

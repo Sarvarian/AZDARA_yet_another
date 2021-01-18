@@ -68,3 +68,15 @@ script = ExtResource( 4 )
 
 [node name="BT_Z_frontest_open_dir_as_persist_move_dir" type="Node" parent="BT_C_Selector/BT_C_Selector (Neutral Exploration"]
 script = ExtResource( 2 )
+
+[node name="BT_C_Sequence (Alert)" type="Node" parent="."]
+script = ExtResource( 6 )
+
+[node name="BT_D_Not" type="Node" parent="BT_C_Sequence (Alert)"]
+script = ExtResource( 5 )
+
+[node name="BT_F_target_on_sight_last_position_is_inf" type="Node" parent="BT_C_Sequence (Alert)/BT_D_Not"]
+script = ExtResource( 8 )
+
+[node name="BT_C_Selector" type="Node" parent="BT_C_Sequence (Alert)"]
+script = ExtResource( 3 )
