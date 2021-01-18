@@ -15,7 +15,7 @@ var p_target_position : Position2D
 var d_move_dir : Vector2 = Vector2.ZERO
 
 
-func _ready() -> void:
+func _enter_tree() -> void:
 	var character : Node = get_parent().get_parent()
 	if not character is Character:
 		character = character.get_parent()
