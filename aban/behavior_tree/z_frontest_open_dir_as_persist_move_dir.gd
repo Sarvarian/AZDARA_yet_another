@@ -2,7 +2,17 @@ class_name BT_Z_frontest_open_dir_as_persist_move_dir
 extends BTNode
 
 func _do(memory : Memory) -> int:
+	for w in memory.p_owner.l_shoulder.get_children():
+		(w as Weapon).disable_collision()
+	for w in memory.p_owner.r_shoulder.get_children():
+		(w as Weapon).disable_collision()
+	
 	var desirable_dir : Vector2 = frontest_open_dir(memory.p_owner)
+	
+	for w in memory.p_owner.l_shoulder.get_children():
+		(w as Weapon).enable_collision()
+	for w in memory.p_owner.r_shoulder.get_children():
+		(w as Weapon).enable_collision()
 	
 	if memory.d_move_dir == desirable_dir:
 		return FAILED

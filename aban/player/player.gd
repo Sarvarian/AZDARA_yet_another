@@ -22,6 +22,8 @@ func _physics_process(_delta : float) -> void:
 	ai.memory.d_move_dir.y += Input.get_action_strength("player%s_move_down"%id)
 	ai.memory.d_move_dir.x += Input.get_action_strength("player%s_move_right"%id)
 	
+	ai.memory.p_custom_look_position.global_position = get_global_mouse_position()
+	
 	pass
 
 
@@ -65,7 +67,6 @@ func _input(event : InputEvent) -> void:
 	
 	if id != 0: return
 	if event is InputEventMouseMotion:
-		ai.memory.p_custom_look_position.global_position = get_global_mouse_position()
 		pass
 	
 	pass
